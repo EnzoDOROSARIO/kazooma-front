@@ -7,4 +7,4 @@ export type AddAiCommand = {
   type: "OPEN_AI" | "ANTHROPIC";
 };
 
-export const addAiSuccessAction = createAction<Ai>("ADD_AI_SUCCESS");
+export const addAiAction = createAction<Ai>("ADD_AI_SUCCESS");

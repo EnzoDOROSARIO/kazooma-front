@@ -18,7 +18,8 @@ describe("Feature: Add ai", () => {
       key: "my-key",
       type: "OPEN_AI" as const,
     };
-    await store.dispatch(addAi(testAi));
+
+    const exec = store.dispatch(addAi(testAi));
 
     const expectedAi = {
       id: "111",
@@ -26,11 +27,12 @@ describe("Feature: Add ai", () => {
       key: "my-key",
       type: "OPEN_AI",
     };
-    expect(fakeAiGateway.latestAddedAi).toEqual(expectedAi);
     expect(store.getState()).toEqual({
       aisFetching: expect.objectContaining({
         ais: [expectedAi],
       }),
     });
+    await exec;
+    expect(fakeAiGateway.latestAddedAi).toEqual(expectedAi);
   });
 });

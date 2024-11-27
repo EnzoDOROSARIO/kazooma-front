@@ -1,9 +1,12 @@
 export type AppState = {
   aisFetching: {
-    ais: Array<{
-      name: string;
-      key: string;
-      type: "OPEN_AI" | "ANTHROPIC";
-    }>;
+    ais: Ai[];
   };
+};
+
+export type Ai = {
+  id: string;
+  name: string;
+  key: string;
+  type: "OPEN_AI" | "ANTHROPIC";
 };

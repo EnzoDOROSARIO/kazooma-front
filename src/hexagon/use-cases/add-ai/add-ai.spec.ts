@@ -1,6 +1,10 @@
-import { describe, expect, test } from "vitest";
+import { describe, expect, test, vi } from "vitest";
 import { initReduxStore, ReduxStore } from "../../../store/reduxStore.ts";
 import { addAi } from "./add-ai.ts";
+
+vi.mock("uuid", () => ({
+  v4: () => "111",
+}));
 
 describe("Feature: Add ai", () => {
   test("Scenario: it should add a new ai correctly", async () => {
@@ -13,7 +17,7 @@ describe("Feature: Add ai", () => {
     await store.dispatch(addAi(testAi));
     expect(store.getState()).toEqual({
       aisFetching: expect.objectContaining({
-        ais: [{ name: "my ai", key: "my-key", type: "OPEN_AI" }],
+        ais: [{ id: "111", name: "my ai", key: "my-key", type: "OPEN_AI" }],
       }),
     });
   });

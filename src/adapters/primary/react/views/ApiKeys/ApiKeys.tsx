@@ -40,8 +40,8 @@ export const ApiKeys = () => {
       <Table>
         <TableHead>
           <TableRow>
-            <TableHeader>Name</TableHeader>
-            <TableHeader>Key</TableHeader>
+            <TableHeader>Nom</TableHeader>
+            <TableHeader>Clé</TableHeader>
             <TableHeader>Type</TableHeader>
           </TableRow>
         </TableHead>

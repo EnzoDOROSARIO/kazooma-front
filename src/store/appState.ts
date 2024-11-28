@@ -1,6 +1,7 @@
 export type AppState = {
   apiKeysFetching: {
     apiKeys: ApiKey[];
+    loading: boolean;
   };
 };
 

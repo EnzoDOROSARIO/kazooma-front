@@ -24,6 +24,7 @@ describe("Feature: Fetch api keys", () => {
     expect(store.getState()).toEqual({
       apiKeysFetching: expect.objectContaining({
         apiKeys: remoteApiKeys,
+        loading: true,
       }),
     });
   });

@@ -5,6 +5,7 @@ import { fetcApiKeysSuccessAction } from "../../hexagon/use-cases/fetch-api-keys
 
 const initialState: AppState["apiKeysFetching"] = {
   apiKeys: [],
+  loading: true,
 };
 
 export const apiKeysFetchingReducer = createReducer(initialState, (builder) => {

@@ -1,34 +1,34 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+import { KeyIcon } from "@heroicons/react/20/solid";
+import { SidebarLayout } from "./adapters/primary/react/components/SidebarLayout.tsx";
+import { Navbar } from "./adapters/primary/react/components/Navbar.tsx";
+import {
+  Sidebar,
+  SidebarBody,
+  SidebarItem,
+  SidebarLabel,
+  SidebarSection,
+} from "./adapters/primary/react/components/Sidebar.tsx";
+import { Text } from "./adapters/primary/react/components/Text.tsx";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Testing things</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <SidebarLayout
+      navbar={<Navbar />}
+      sidebar={
+        <Sidebar>
+          <SidebarBody>
+            <SidebarSection>
+              <SidebarItem href="/api-keys">
+                <KeyIcon />
+                <SidebarLabel>Api keys</SidebarLabel>
+              </SidebarItem>
+            </SidebarSection>
+          </SidebarBody>
+        </Sidebar>
+      }
+    >
+      <Text>Hello world</Text>
+    </SidebarLayout>
   );
 }
 

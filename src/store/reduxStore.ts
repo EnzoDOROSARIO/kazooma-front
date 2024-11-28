@@ -5,18 +5,18 @@ import {
   ThunkDispatch,
   UnknownAction,
 } from "@reduxjs/toolkit";
-import { aisFetchingReducer } from "./reducers/ais-fetching-reducer.ts";
+import { apiKeysFetchingReducer } from "./reducers/api-keys-fetching-reducer.ts";
 import { AppState } from "./appState.ts";
-import { AiGateway } from "../hexagon/ports/ai-gateway.ts";
+import { ApiKeyGateway } from "../hexagon/ports/api-key-gateway.ts";
 
 export interface Dependencies {
-  aiGateway: AiGateway;
+  apiKeyGateway: ApiKeyGateway;
 }
 
 export const initReduxStore = (dependencies: Partial<Dependencies>) =>
   configureStore({
     reducer: {
-      aisFetching: aisFetchingReducer,
+      apiKeysFetching: apiKeysFetchingReducer,
     },
     devTools: true,
     middleware: (getDefaultMiddleware) =>

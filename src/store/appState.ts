@@ -1,10 +1,10 @@
 export type AppState = {
-  aisFetching: {
-    ais: Ai[];
+  apiKeysFetching: {
+    apiKeys: ApiKey[];
   };
 };
 
-export type Ai = {
+export type ApiKey = {
   id: string;
   name: string;
   key: string;

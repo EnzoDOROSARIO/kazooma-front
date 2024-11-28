@@ -1,6 +1,6 @@
 import { describe, expect, test, vi } from "vitest";
 import { initReduxStore, ReduxStore } from "../../../store/reduxStore.ts";
-import { fakeApiKeyGateway } from "../../../adapters/secondary/fake-api-key-gateway.ts";
+import { FakeApiKeyGateway } from "../../../adapters/secondary/fake/fake-api-key-gateway.ts";
 import { addApiKey } from "./add-api-key.ts";
 
 vi.mock("uuid", () => ({
@@ -9,7 +9,7 @@ vi.mock("uuid", () => ({
 
 describe("Feature: Add api key", () => {
   test("Scenario: it should add a new api key correctly", async () => {
-    const apiKeyGateway = new fakeApiKeyGateway();
+    const apiKeyGateway = new FakeApiKeyGateway();
     const testApiKey = {
       name: "my api key",
       key: "my-key",

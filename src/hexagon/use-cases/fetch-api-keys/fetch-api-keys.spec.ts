@@ -1,6 +1,6 @@
 import { describe, test, expect } from "vitest";
 import { initReduxStore, ReduxStore } from "../../../store/reduxStore.ts";
-import { fakeApiKeyGateway } from "../../../adapters/secondary/fake-api-key-gateway.ts";
+import { FakeApiKeyGateway } from "../../../adapters/secondary/fake/fake-api-key-gateway.ts";
 import { ApiKey } from "../../../store/appState.ts";
 import { fetchApiKeys } from "./fetch-api-keys.ts";
 
@@ -14,7 +14,7 @@ describe("Feature: Fetch api keys", () => {
         type: "OPEN_AI",
       },
     ];
-    const apiKeyGateway = new fakeApiKeyGateway(remoteApiKeys);
+    const apiKeyGateway = new FakeApiKeyGateway(remoteApiKeys);
 
     const store: ReduxStore = initReduxStore({
       apiKeyGateway,

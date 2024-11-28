@@ -1,12 +1,12 @@
 import { AppThunk } from "../../../store/reduxStore.ts";
 import {
-  fetcApiKeysPendingAction,
-  fetcApiKeysSuccessAction,
+  fetchApiKeysPendingAction,
+  fetchApiKeysSuccessAction,
 } from "./actions.ts";
 
 export const fetchApiKeys =
   (): AppThunk<Promise<void>> => async (dispatch, _, dependencies) => {
-    dispatch(fetcApiKeysPendingAction());
+    dispatch(fetchApiKeysPendingAction());
     const apiKeys = await dependencies.apiKeyGateway.fetchApiKeys();
-    dispatch(fetcApiKeysSuccessAction(apiKeys));
+    dispatch(fetchApiKeysSuccessAction(apiKeys));
   };

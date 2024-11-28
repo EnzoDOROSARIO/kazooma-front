@@ -10,15 +10,15 @@ vi.mock("uuid", () => ({
 describe("Feature: Add api key", () => {
   test("Scenario: it should add a new api key correctly", async () => {
     const apiKeyGateway = new fakeApiKeyGateway();
-    const store: ReduxStore = initReduxStore({
-      apiKeyGateway: apiKeyGateway,
-    });
     const testApiKey = {
       name: "my api key",
       key: "my-key",
       type: "OPEN_AI" as const,
     };
 
+    const store: ReduxStore = initReduxStore({
+      apiKeyGateway,
+    });
     const exec = store.dispatch(addApiKey(testApiKey));
 
     const expectedApiKey = {

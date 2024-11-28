@@ -19,12 +19,18 @@ describe("Feature: Fetch api keys", () => {
     const store: ReduxStore = initReduxStore({
       apiKeyGateway,
     });
-    await store.dispatch(fetchApiKeys());
-
+    const exec = store.dispatch(fetchApiKeys());
+    expect(store.getState()).toEqual({
+      apiKeysFetching: expect.objectContaining({
+        apiKeys: [],
+        loading: true,
+      }),
+    });
+    await exec;
     expect(store.getState()).toEqual({
       apiKeysFetching: expect.objectContaining({
         apiKeys: remoteApiKeys,
-        loading: true,
+        loading: false,
       }),
     });
   });

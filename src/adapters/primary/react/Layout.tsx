@@ -22,11 +22,11 @@ export const Layout = () => {
             <SidebarSection>
               <SidebarItem href="/" current={location.pathname === "/"}>
                 <HomeIcon />
-                <SidebarLabel>Home</SidebarLabel>
+                <SidebarLabel>Accueil</SidebarLabel>
               </SidebarItem>
               <SidebarItem href="/keys" current={location.pathname === "/keys"}>
                 <KeyIcon />
-                <SidebarLabel>Api keys</SidebarLabel>
+                <SidebarLabel>Clés API</SidebarLabel>
               </SidebarItem>
             </SidebarSection>
           </SidebarBody>

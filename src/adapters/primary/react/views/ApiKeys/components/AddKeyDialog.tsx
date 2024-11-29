@@ -28,8 +28,8 @@ export const AddKeyDialog = (props: {
   });
 
   const onSubmit = handleSubmit((data) => {
-    props.onAdd(data);
     reset();
+    props.onAdd(data);
   });
 
   const handleClose = () => {
@@ -43,11 +43,11 @@ export const AddKeyDialog = (props: {
         <DialogTitle>Ajouter une clé</DialogTitle>
         <DialogBody>
           <FieldGroup>
-            <Field disabled>
+            <Field>
               <Label>Type</Label>
               <Select {...register("type")}>
                 <option value="OPEN_AI">OpenAI</option>
-                <option value="ANTHROPIC">Anthropic</option>
+                <option value="ANTHROPIC">Anthropic (Claude)</option>
               </Select>
             </Field>
             <Field>

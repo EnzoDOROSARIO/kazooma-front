@@ -8,6 +8,7 @@ import {
 import { apiKeysFetchingReducer } from "./reducers/api-keys-fetching-reducer.ts";
 import { AppState } from "./appState.ts";
 import { ApiKeyGateway } from "../hexagon/ports/api-key-gateway.ts";
+import { useDispatch } from "react-redux";
 
 export interface Dependencies {
   apiKeyGateway: ApiKeyGateway;
@@ -37,3 +38,5 @@ export type AppThunk<T = void> = ThunkAction<
   Dependencies,
   UnknownAction
 >;
+export type AppDispatch = ThunkDispatch<AppState, Dependencies, UnknownAction>;
+export const useAppDispatch = useDispatch.withTypes<AppDispatch>(); // Export a hook that can be reused to resolve types

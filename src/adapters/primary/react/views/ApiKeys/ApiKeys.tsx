@@ -3,17 +3,12 @@ import { PlusIcon } from "@heroicons/react/16/solid";
 import { Button } from "../../components/Button.tsx";
 import { Heading } from "../../components/Heading.tsx";
 import { ApiKeysTable } from "./components/ApiKeysTable.tsx";
-import {
-  Dialog,
-  DialogActions,
-  DialogBody,
-  DialogTitle,
-} from "../../components/Dialog.tsx";
-import { Field, FieldGroup, Label } from "../../components/Fieldset.tsx";
-import { Input } from "../../components/Input.tsx";
-import { Select } from "../../components/Select.tsx";
+import { AddKeyDialog } from "./components/AddKeyDialog.tsx";
+import { addApiKey } from "../../../../../hexagon/use-cases/add-api-key/add-api-key.ts";
+import { useAppDispatch } from "../../../../../store/reduxStore.ts";
 
 export const ApiKeys = () => {
+  const dispatch = useAppDispatch();
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -28,34 +23,14 @@ export const ApiKeys = () => {
         </div>
       </div>
       <ApiKeysTable />
-      <Dialog open={isOpen} onClose={setIsOpen}>
-        <DialogTitle>Ajouter une clé</DialogTitle>
-        <DialogBody>
-          <FieldGroup>
-            <Field disabled>
-              <Label>Type</Label>
-              <Select name="type" value="OPEN_AI">
-                <option value="OPEN_AI">OpenAI</option>
-                <option value="ANTHROPIC">Anthropic</option>
-              </Select>
-            </Field>
-            <Field>
-              <Label>Nom</Label>
-              <Input name="name" placeholder="Kiryu Kazuma" />
-            </Field>
-            <Field>
-              <Label>Clé</Label>
-              <Input name="key" placeholder="sk-XXXXX" />
-            </Field>
-          </FieldGroup>
-        </DialogBody>
-        <DialogActions>
-          <Button plain onClick={() => setIsOpen(false)}>
-            Annuler
-          </Button>
-          <Button onClick={() => setIsOpen(false)}>Ajouter</Button>
-        </DialogActions>
-      </Dialog>
+      <AddKeyDialog
+        open={isOpen}
+        onClose={() => setIsOpen(false)}
+        onAdd={(data) => {
+          dispatch(addApiKey(data));
+          setIsOpen(false);
+        }}
+      />
     </>
   );
 };

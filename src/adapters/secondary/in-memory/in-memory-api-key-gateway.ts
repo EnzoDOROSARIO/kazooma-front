@@ -9,6 +9,7 @@ export class InMemoryApiKeyGateway implements ApiKeyGateway {
   }
 
   async fetchApiKeys(): Promise<ApiKey[]> {
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     return this.apiKeys;
   }
 }

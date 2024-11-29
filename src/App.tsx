@@ -3,11 +3,11 @@ import Home from "./adapters/primary/react/views/Home";
 import { Layout } from "./adapters/primary/react/Layout.tsx";
 import ApiKeys from "./adapters/primary/react/views/ApiKeys";
 import { Provider } from "react-redux";
-import { initReduxStore } from "./store/reduxStore.ts";
-import { InMemoryApiKeyGateway } from "./adapters/secondary/in-memory/in-memory-api-key-gateway.ts";
+import { initLocalReduxStore } from "./store/reduxStore.ts";
+import { useMemo } from "react";
 
 function App() {
-  const store = initReduxStore({ apiKeyGateway: new InMemoryApiKeyGateway() });
+  const store = useMemo(() => initLocalReduxStore(), []);
 
   return (
     <Provider store={store}>

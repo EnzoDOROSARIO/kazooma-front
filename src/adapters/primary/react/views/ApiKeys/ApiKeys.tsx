@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PlusIcon } from "@heroicons/react/16/solid";
 import { Button } from "../../components/Button.tsx";
 import { Heading } from "../../components/Heading.tsx";
@@ -6,10 +6,15 @@ import { ApiKeysTable } from "./components/ApiKeysTable.tsx";
 import { AddKeyDialog } from "./components/AddKeyDialog.tsx";
 import { addApiKey } from "../../../../../hexagon/use-cases/add-api-key/add-api-key.ts";
 import { useAppDispatch } from "../../../../../store/reduxStore.ts";
+import { fetchApiKeys } from "../../../../../hexagon/use-cases/fetch-api-keys/fetch-api-keys.ts";
 
 export const ApiKeys = () => {
   const dispatch = useAppDispatch();
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    dispatch(fetchApiKeys());
+  }, [dispatch]);
 
   return (
     <>

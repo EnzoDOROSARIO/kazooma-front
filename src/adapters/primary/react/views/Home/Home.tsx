@@ -1,5 +1,5 @@
 import { Text } from "../../components/Text.tsx";
 
 export const Home = () => {
-  return <Text>Home</Text>;
+  return <Text>Accueil</Text>;
 };

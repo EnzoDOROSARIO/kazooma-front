@@ -5,6 +5,7 @@ import {
   fetchApiKeysPendingAction,
   fetchApiKeysSuccessAction,
 } from "../../hexagon/use-cases/fetch-api-keys/actions.ts";
+import { removeApiKeyAction } from "../../hexagon/use-cases/remove-api-key/actions.ts";
 
 const initialState: AppState["apiKeysFetching"] = {
   apiKeys: [],
@@ -12,15 +13,19 @@ const initialState: AppState["apiKeysFetching"] = {
 };
 
 export const apiKeysFetchingReducer = createReducer(initialState, (builder) => {
-  builder.addCase(addApiKeyAction, (state, action) => {
-    state.apiKeys = [...state.apiKeys, action.payload];
-  });
-  builder.addCase(fetchApiKeysPendingAction, (state) => {
-    state.apiKeys = [];
-    state.loading = true;
-  });
-  builder.addCase(fetchApiKeysSuccessAction, (state, action) => {
-    state.apiKeys = action.payload;
-    state.loading = false;
-  });
+  builder
+    .addCase(addApiKeyAction, (state, action) => {
+      state.apiKeys = [...state.apiKeys, action.payload];
+    })
+    .addCase(removeApiKeyAction, (state) => {
+      state.apiKeys = [];
+    })
+    .addCase(fetchApiKeysPendingAction, (state) => {
+      state.apiKeys = [];
+      state.loading = true;
+    })
+    .addCase(fetchApiKeysSuccessAction, (state, action) => {
+      state.apiKeys = action.payload;
+      state.loading = false;
+    });
 });

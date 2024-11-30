@@ -16,11 +16,15 @@ export interface Dependencies {
   apiKeyGateway: ApiKeyGateway;
 }
 
-export const initReduxStore = (dependencies: Partial<Dependencies>) =>
+export const initReduxStore = (
+  dependencies: Partial<Dependencies>,
+  initialState?: Partial<AppState>,
+) =>
   configureStore({
     reducer: {
       apiKeysFetching: apiKeysFetchingReducer,
     },
+    preloadedState: initialState,
     devTools: true,
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({

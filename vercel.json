@@ -2,7 +2,7 @@
   "rewrites":  [
     {"source": "/(.*)", "destination": "/"}
   ],
-  "deploymentEnabled": {
-    "master": false
+  "github": {
+    "enabled": false
   }
 }

@@ -91,7 +91,9 @@ const ApiKeyRow = (props: {
   return (
     <TableRow>
       <TableCell>{props.apiKey.name}</TableCell>
-      <TableCell>{props.apiKey.key}</TableCell>
+      <TableCell>
+        {`${props.apiKey.key.slice(0, 3)}...${props.apiKey.key.slice(-4)}`}
+      </TableCell>
       <TableCell>{badgeFromType[props.apiKey.type]}</TableCell>
       <TableCell>
         <Button plain onClick={() => props.onRemove(props.apiKey.id)}>

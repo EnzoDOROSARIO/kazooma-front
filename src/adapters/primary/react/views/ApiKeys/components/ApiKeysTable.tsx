@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { TrashIcon } from "@heroicons/react/16/solid";
 import { apiKeysSelector } from "../../../selectors/api-keys-selector.ts";
 import {
   Table,
@@ -11,9 +12,13 @@ import {
 } from "../../../components/Table.tsx";
 import { Badge } from "../../../components/Badge.tsx";
 import { ApiKey } from "../../../../../../store/appState.ts";
+import { Button } from "../../../components/Button.tsx";
+import { removeApiKey } from "../../../../../../hexagon/use-cases/remove-api-key/remove-api-key.ts";
+import { useAppDispatch } from "../../../../../../store/reduxStore.ts";
 
 export const ApiKeysTable = () => {
   const { apiKeys, loading } = useSelector(apiKeysSelector);
+  const dispatch = useAppDispatch();
   const [showLoading, setShowLoading] = useState(false);
 
   useEffect(() => {
@@ -30,6 +35,10 @@ export const ApiKeysTable = () => {
     };
   }, [loading]);
 
+  const handleRemove = (id: string) => {
+    dispatch(removeApiKey(id));
+  };
+
   return (
     <Table>
       <TableHead>
@@ -37,6 +46,9 @@ export const ApiKeysTable = () => {
           <TableHeader>Nom</TableHeader>
           <TableHeader>Clé</TableHeader>
           <TableHeader>Type</TableHeader>
+          <TableHeader className="relative w-0">
+            <span className="sr-only">Actions</span>
+          </TableHeader>
         </TableRow>
       </TableHead>
       <TableBody>
@@ -52,17 +64,25 @@ export const ApiKeysTable = () => {
                 <TableCell className="animate-pulse">
                   <div className="h-6 bg-gray-200 dark:bg-gray-500 rounded w-20" />
                 </TableCell>
+                <TableCell />
               </TableRow>
             ))
           : apiKeys.map((apiKey) => (
-              <ApiKeyRow key={apiKey.id} apiKey={apiKey} />
+              <ApiKeyRow
+                key={apiKey.id}
+                apiKey={apiKey}
+                onRemove={handleRemove}
+              />
             ))}
       </TableBody>
     </Table>
   );
 };
 
-const ApiKeyRow = (props: { apiKey: ApiKey }) => {
+const ApiKeyRow = (props: {
+  apiKey: ApiKey;
+  onRemove: (id: string) => void;
+}) => {
   const badgeFromType = {
     OPEN_AI: <Badge color="lime">OpenAI</Badge>,
     ANTHROPIC: <Badge color="amber">Anthropic</Badge>,
@@ -73,6 +93,11 @@ const ApiKeyRow = (props: { apiKey: ApiKey }) => {
       <TableCell>{props.apiKey.name}</TableCell>
       <TableCell>{props.apiKey.key}</TableCell>
       <TableCell>{badgeFromType[props.apiKey.type]}</TableCell>
+      <TableCell>
+        <Button plain onClick={() => props.onRemove(props.apiKey.id)}>
+          <TrashIcon />
+        </Button>
+      </TableCell>
     </TableRow>
   );
 };

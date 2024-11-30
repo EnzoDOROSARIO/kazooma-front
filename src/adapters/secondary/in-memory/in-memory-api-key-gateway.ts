@@ -12,4 +12,8 @@ export class InMemoryApiKeyGateway implements ApiKeyGateway {
     await new Promise((resolve) => setTimeout(resolve, 1000));
     return this.apiKeys;
   }
+
+  async remove(id: ApiKey["id"]): Promise<void> {
+    this.apiKeys = this.apiKeys.filter((apiKey) => apiKey.id !== id);
+  }
 }

@@ -19,4 +19,15 @@ export class LocalApiKeyGateway implements ApiKeyGateway {
     }
     return apiKeys;
   }
+
+  async remove(id: ApiKey["id"]): Promise<void> {
+    const apiKeys: ApiKey[] | null = await localforage.getItem("apiKeys");
+    if (!apiKeys) {
+      return;
+    }
+    await localforage.setItem(
+      "apiKeys",
+      apiKeys.filter((apiKey) => apiKey.id !== id),
+    );
+  }
 }

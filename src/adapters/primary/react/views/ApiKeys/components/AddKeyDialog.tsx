@@ -21,7 +21,12 @@ export const AddKeyDialog = (props: {
   onClose: () => void;
   onAdd: (data: FormValues) => void;
 }) => {
-  const { register, handleSubmit, reset } = useForm<FormValues>({
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<FormValues>({
     defaultValues: {
       type: "OPEN_AI",
     },
@@ -45,18 +50,26 @@ export const AddKeyDialog = (props: {
           <FieldGroup>
             <Field>
               <Label>Type</Label>
-              <Select {...register("type")}>
+              <Select {...register("type", { required: true })}>
                 <option value="OPEN_AI">OpenAI</option>
                 <option value="ANTHROPIC">Anthropic (Claude)</option>
               </Select>
             </Field>
             <Field>
               <Label>Nom</Label>
-              <Input {...register("name")} placeholder="Kiryu Kazuma" />
+              <Input
+                {...register("name", { required: true })}
+                invalid={errors.name !== undefined}
+                placeholder="Kiryu Kazuma"
+              />
             </Field>
             <Field>
               <Label>Clé</Label>
-              <Input {...register("key")} placeholder="sk-XXXXX" />
+              <Input
+                {...register("key", { required: true })}
+                invalid={errors.key !== undefined}
+                placeholder="sk-XXXXX"
+              />
             </Field>
           </FieldGroup>
         </DialogBody>

@@ -10,16 +10,19 @@ describe("Feature: Remove api key", () => {
         loading: false,
         apiKeys: [
           { id: "111", name: "my api key", key: "my-key", type: "OPEN_AI" },
+          { id: "222", name: "my api key 2", key: "my-key-2", type: "OPEN_AI" },
         ],
       },
     };
 
     const store: ReduxStore = initReduxStore({}, initialState);
-    await store.dispatch(removeApiKey());
+    await store.dispatch(removeApiKey("111"));
 
     expect(store.getState()).toEqual({
       apiKeysFetching: expect.objectContaining({
-        apiKeys: [],
+        apiKeys: [
+          { id: "222", name: "my api key 2", key: "my-key-2", type: "OPEN_AI" },
+        ],
       }),
     });
   });

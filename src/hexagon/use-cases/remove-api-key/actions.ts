@@ -1,3 +1,3 @@
 import { createAction } from "@reduxjs/toolkit";
 
-export const removeApiKeyAction = createAction("REMOVE_API_KEY");
+export const removeApiKeyAction = createAction<string>("REMOVE_API_KEY");

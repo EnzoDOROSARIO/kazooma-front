@@ -17,8 +17,10 @@ export const apiKeysFetchingReducer = createReducer(initialState, (builder) => {
     .addCase(addApiKeyAction, (state, action) => {
       state.apiKeys = [...state.apiKeys, action.payload];
     })
-    .addCase(removeApiKeyAction, (state) => {
-      state.apiKeys = [];
+    .addCase(removeApiKeyAction, (state, action) => {
+      state.apiKeys = state.apiKeys.filter(
+        (apiKey) => apiKey.id !== action.payload,
+      );
     })
     .addCase(fetchApiKeysPendingAction, (state) => {
       state.apiKeys = [];

@@ -24,8 +24,7 @@ describe("Feature: Remove api key", () => {
       },
       initialState,
     );
-    await store.dispatch(removeApiKey("111"));
-
+    const exec = store.dispatch(removeApiKey("111"));
     expect(store.getState()).toEqual({
       apiKeysFetching: expect.objectContaining({
         apiKeys: [
@@ -33,6 +32,8 @@ describe("Feature: Remove api key", () => {
         ],
       }),
     });
+
+    await exec;
     expect(apiKeyGateway.lastRemovedApiKeyId).toEqual("111");
   });
 });

@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { TrashIcon } from "@heroicons/react/16/solid";
 import { apiKeysSelector } from "../../../selectors/api-keys-selector.ts";
@@ -17,23 +16,8 @@ import { removeApiKey } from "../../../../../../hexagon/use-cases/remove-api-key
 import { useAppDispatch } from "../../../../../../store/reduxStore.ts";
 
 export const ApiKeysTable = () => {
-  const { apiKeys, loading } = useSelector(apiKeysSelector);
+  const { apiKeys } = useSelector(apiKeysSelector);
   const dispatch = useAppDispatch();
-  const [showLoading, setShowLoading] = useState(false);
-
-  useEffect(() => {
-    const timeoutId = loading
-      ? setTimeout(() => setShowLoading(true), 200)
-      : undefined;
-    if (!loading) {
-      setShowLoading(false);
-    }
-    return () => {
-      if (timeoutId !== undefined) {
-        clearTimeout(timeoutId);
-      }
-    };
-  }, [loading]);
 
   const handleRemove = (id: string) => {
     dispatch(removeApiKey(id));
@@ -52,28 +36,9 @@ export const ApiKeysTable = () => {
         </TableRow>
       </TableHead>
       <TableBody>
-        {showLoading
-          ? [...Array(2)].map((_, index) => (
-              <TableRow key={`skeleton-${index}`}>
-                <TableCell className="animate-pulse">
-                  <div className="h-4 bg-gray-200 dark:bg-gray-500 rounded w-24" />
-                </TableCell>
-                <TableCell className="animate-pulse">
-                  <div className="h-4 bg-gray-200 dark:bg-gray-500 rounded w-64" />
-                </TableCell>
-                <TableCell className="animate-pulse">
-                  <div className="h-6 bg-gray-200 dark:bg-gray-500 rounded w-20" />
-                </TableCell>
-                <TableCell />
-              </TableRow>
-            ))
-          : apiKeys.map((apiKey) => (
-              <ApiKeyRow
-                key={apiKey.id}
-                apiKey={apiKey}
-                onRemove={handleRemove}
-              />
-            ))}
+        {apiKeys.map((apiKey) => (
+          <ApiKeyRow key={apiKey.id} apiKey={apiKey} onRemove={handleRemove} />
+        ))}
       </TableBody>
     </Table>
   );

@@ -9,7 +9,6 @@ import { removeApiKeyAction } from "../../hexagon/use-cases/remove-api-key/actio
 
 const initialState: AppState["apiKeysFetching"] = {
   apiKeys: [],
-  loading: false,
 };
 
 export const apiKeysFetchingReducer = createReducer(initialState, (builder) => {
@@ -24,10 +23,8 @@ export const apiKeysFetchingReducer = createReducer(initialState, (builder) => {
     })
     .addCase(fetchApiKeysPendingAction, (state) => {
       state.apiKeys = [];
-      state.loading = true;
     })
     .addCase(fetchApiKeysSuccessAction, (state, action) => {
       state.apiKeys = action.payload;
-      state.loading = false;
     });
 });

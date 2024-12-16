@@ -13,7 +13,6 @@ describe("Feature: Remove api key", () => {
     const apiKeyGateway = new FakeApiKeyGateway(apiKeys);
     const initialState: Partial<AppState> = {
       apiKeysFetching: {
-        loading: false,
         apiKeys,
       },
     };

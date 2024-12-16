@@ -1,10 +1,7 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { AppState } from "../appState.ts";
 import { addApiKeyAction } from "../../hexagon/use-cases/add-api-key/actions.ts";
-import {
-  fetchApiKeysPendingAction,
-  fetchApiKeysSuccessAction,
-} from "../../hexagon/use-cases/fetch-api-keys/actions.ts";
+import { fetchApiKeysSuccessAction } from "../../hexagon/use-cases/fetch-api-keys/actions.ts";
 import { removeApiKeyAction } from "../../hexagon/use-cases/remove-api-key/actions.ts";
 
 const initialState: AppState["apiKeysFetching"] = {
@@ -20,9 +17,6 @@ export const apiKeysFetchingReducer = createReducer(initialState, (builder) => {
       state.apiKeys = state.apiKeys.filter(
         (apiKey) => apiKey.id !== action.payload,
       );
-    })
-    .addCase(fetchApiKeysPendingAction, (state) => {
-      state.apiKeys = [];
     })
     .addCase(fetchApiKeysSuccessAction, (state, action) => {
       state.apiKeys = action.payload;

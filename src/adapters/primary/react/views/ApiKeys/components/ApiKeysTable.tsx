@@ -49,7 +49,7 @@ const ApiKeyRow = (props: {
   onRemove: (id: string) => void;
 }) => {
   const badgeFromType = {
-    OPEN_AI: <Badge color="lime">OpenAI</Badge>,
+    OPEN_AI: <Badge color="zinc">OpenAI</Badge>,
     ANTHROPIC: <Badge color="amber">Anthropic</Badge>,
   };
 

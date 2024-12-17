@@ -5,10 +5,12 @@ import { Navbar } from "./components/Navbar.tsx";
 import {
   Sidebar,
   SidebarBody,
+  SidebarHeader,
   SidebarItem,
   SidebarLabel,
   SidebarSection,
 } from "./components/Sidebar.tsx";
+import { ChatList } from "./components/sidebar/ChatList.tsx";
 
 export const Layout = () => {
   const location = useLocation();
@@ -18,7 +20,7 @@ export const Layout = () => {
       navbar={<Navbar />}
       sidebar={
         <Sidebar>
-          <SidebarBody>
+          <SidebarHeader>
             <SidebarSection>
               <SidebarItem href="/" current={location.pathname === "/"}>
                 <HomeIcon />
@@ -29,6 +31,9 @@ export const Layout = () => {
                 <SidebarLabel>Clés API</SidebarLabel>
               </SidebarItem>
             </SidebarSection>
+          </SidebarHeader>
+          <SidebarBody>
+            <ChatList />
           </SidebarBody>
         </Sidebar>
       }

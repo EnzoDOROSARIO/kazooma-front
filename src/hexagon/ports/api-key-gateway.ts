@@ -1,4 +1,4 @@
-import { ApiKey } from "../../store/appState.ts";
+import { ApiKey } from "../models/api-keys";
 
 export interface ApiKeyGateway {
   fetchApiKeys(): Promise<ApiKey[]>;

@@ -1,4 +1,4 @@
-import { ApiKey } from "../../../store/appState.ts";
+import { ApiKey } from "../../../hexagon/models/api-keys.ts";
 import { ApiKeyGateway } from "../../../hexagon/ports/api-key-gateway.ts";
 import * as localforage from "localforage";
 

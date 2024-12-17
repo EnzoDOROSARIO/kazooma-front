@@ -1,5 +1,5 @@
 import { createAction } from "@reduxjs/toolkit";
-import { ApiKey } from "../../../store/appState.ts";
+import { ApiKey } from "../../models/api-keys";
 
 export type AddApiKeyCommand = {
   name: string;

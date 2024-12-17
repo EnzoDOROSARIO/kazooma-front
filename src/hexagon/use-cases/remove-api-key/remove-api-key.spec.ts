@@ -1,8 +1,9 @@
 import { describe, test, expect } from "vitest";
 import { initReduxStore, ReduxStore } from "../../../store/reduxStore.ts";
-import { ApiKey, AppState } from "../../../store/appState.ts";
+import { AppState } from "../../../store/appState.ts";
 import { removeApiKey } from "./remove-api-key.ts";
 import { FakeApiKeyGateway } from "../../../adapters/secondary/fake/fake-api-key-gateway.ts";
+import { ApiKey } from "../../models/api-keys.ts";
 
 describe("Feature: Remove api key", () => {
   test("Scenario: it should remove an api key correctly", async () => {

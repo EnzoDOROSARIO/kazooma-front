@@ -10,10 +10,10 @@ import {
   TableRow,
 } from "../../../components/Table.tsx";
 import { Badge } from "../../../components/Badge.tsx";
-import { ApiKey } from "../../../../../../store/appState.ts";
 import { Button } from "../../../components/Button.tsx";
 import { removeApiKey } from "../../../../../../hexagon/use-cases/remove-api-key/remove-api-key.ts";
 import { useAppDispatch } from "../../../../../../store/reduxStore.ts";
+import { ApiKey } from "../../../../../../hexagon/models/api-keys.ts";
 
 export const ApiKeysTable = () => {
   const { apiKeys } = useSelector(apiKeysSelector);

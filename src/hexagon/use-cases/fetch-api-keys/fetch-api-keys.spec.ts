@@ -18,18 +18,22 @@ describe("Feature: Fetch api keys", () => {
     const store: ReduxStore = initReduxStore({
       apiKeyGateway,
     });
-    expect(store.getState()).toEqual({
-      apiKeysFetching: {
-        apiKeys: [],
-      },
-    });
+    expect(store.getState()).toEqual(
+      expect.objectContaining({
+        apiKeysFetching: {
+          apiKeys: [],
+        },
+      }),
+    );
 
     await store.dispatch(fetchApiKeys());
 
-    expect(store.getState()).toEqual({
-      apiKeysFetching: {
-        apiKeys: remoteApiKeys,
-      },
-    });
+    expect(store.getState()).toEqual(
+      expect.objectContaining({
+        apiKeysFetching: {
+          apiKeys: remoteApiKeys,
+        },
+      }),
+    );
   });
 });

@@ -27,11 +27,13 @@ describe("Feature: Add api key", () => {
       key: "my-key",
       type: "OPEN_AI",
     };
-    expect(store.getState()).toEqual({
-      apiKeysFetching: expect.objectContaining({
-        apiKeys: [expectedApiKey],
+    expect(store.getState()).toEqual(
+      expect.objectContaining({
+        apiKeysFetching: expect.objectContaining({
+          apiKeys: [expectedApiKey],
+        }),
       }),
-    });
+    );
     await exec;
     expect(apiKeyGateway.lastAddedApiKey).toEqual(expectedApiKey);
   });

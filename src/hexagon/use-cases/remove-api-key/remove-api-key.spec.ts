@@ -25,13 +25,20 @@ describe("Feature: Remove api key", () => {
       initialState,
     );
     const exec = store.dispatch(removeApiKey("111"));
-    expect(store.getState()).toEqual({
-      apiKeysFetching: expect.objectContaining({
-        apiKeys: [
-          { id: "222", name: "my api key 2", key: "my-key-2", type: "OPEN_AI" },
-        ],
+    expect(store.getState()).toEqual(
+      expect.objectContaining({
+        apiKeysFetching: expect.objectContaining({
+          apiKeys: [
+            {
+              id: "222",
+              name: "my api key 2",
+              key: "my-key-2",
+              type: "OPEN_AI",
+            },
+          ],
+        }),
       }),
-    });
+    );
 
     await exec;
     expect(apiKeyGateway.lastRemovedApiKeyId).toEqual("111");

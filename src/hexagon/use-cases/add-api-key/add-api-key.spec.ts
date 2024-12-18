@@ -3,8 +3,8 @@ import { initReduxStore, ReduxStore } from "../../../store/reduxStore.ts";
 import { FakeApiKeyGateway } from "../../../adapters/secondary/fake/fake-api-key-gateway.ts";
 import { addApiKey } from "./add-api-key.ts";
 
-vi.mock("uuid", () => ({
-  v4: () => "111",
+vi.mock("nanoid", () => ({
+  nanoid: () => "111",
 }));
 
 describe("Feature: Add api key", () => {

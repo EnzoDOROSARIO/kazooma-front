@@ -21,14 +21,16 @@ export const ChatList = () => {
 
   return (
     <>
-      <SidebarSection>
-        <SidebarHeading>Dernières conversations</SidebarHeading>
-        {chats.map((c) => (
-          <SidebarItem key={c.id}>
-            <SidebarLabel>{c.title}</SidebarLabel>
-          </SidebarItem>
-        ))}
-      </SidebarSection>
+      {chats.length > 0 && (
+        <SidebarSection>
+          <SidebarHeading>Dernières conversations</SidebarHeading>
+          {chats.map((c) => (
+            <SidebarItem key={c.id}>
+              <SidebarLabel>{c.title}</SidebarLabel>
+            </SidebarItem>
+          ))}
+        </SidebarSection>
+      )}
       <SidebarSection>
         <SidebarItem>
           <PencilSquareIcon />

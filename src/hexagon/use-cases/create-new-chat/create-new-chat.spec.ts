@@ -28,9 +28,9 @@ describe("Feature: Create new chat", () => {
     );
   });
 
-  describe("Scenario: a chat has been created", () => {
+  describe("Scenario: a chat is created", () => {
     beforeEach(async () => {
-      await store.dispatch(createNewChat("test chat"));
+      await store.dispatch(createNewChat());
     });
 
     test("the chat list should contain the new chat", async () => {
@@ -40,7 +40,7 @@ describe("Feature: Create new chat", () => {
             chats: [
               {
                 id: "111",
-                title: "test chat",
+                title: "Nouvelle conversation",
               },
             ],
           },
@@ -50,7 +50,7 @@ describe("Feature: Create new chat", () => {
     test("the chat should be sended to the gateway", async () => {
       expect(chatGateway.lastCreatedChat).toEqual({
         id: "111",
-        title: "test chat",
+        title: "Nouvelle conversation",
       });
     });
   });
